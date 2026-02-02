@@ -23,6 +23,8 @@ header {
 nav {
     text-align: center;
     color: white;
+    background-color: aliceblue;
+    border: solid black;
 }
 
 header {
@@ -58,7 +60,7 @@ header {
     animation-duration: infinite;
     background-repeat: repeat;
     animation-iteration-count: 10;
-    font-size: 15px;
+    font-size: 13px;
     color: rgb(0, 255, 242);
     background-color: rgb(18, 20, 104);
     text-decoration: underline;
@@ -74,6 +76,7 @@ header {
     background-attachment: fixed;
     background-position: center;
     height: auto;
-    max-width: 50%;
+    max-width: 75%;
     margin: 0;
 }
+
