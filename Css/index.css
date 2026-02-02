@@ -11,6 +11,7 @@ body {
 }
 header {
     background-color: bisque;
+    border: black;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -28,10 +29,14 @@ nav {
 }
 
 header {
-    background-color:rgb(161, 161, 161)
+    background-color:rgb(161, 161, 161);
+    border: black;
 }
+
 .header {
-        background-color: bisque;
+    text-align: center;
+    background-color: bisque;
+    border: black;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -66,17 +71,19 @@ header {
     text-decoration: underline;
     transition: 1s;
     margin: 3px;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .resourceheader {
+    text-align: center;
     background-color: rgb(161, 161, 161);
+    border: black;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     height: auto;
-    max-width: 75%;
+    max-width: 100%;
     margin: 0;
 }
 
