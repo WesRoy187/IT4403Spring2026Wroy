@@ -38,3 +38,31 @@ header {
     max-width: 100%;
     margin: 0;
 }
+
+.activebar a {
+    border: solid white;
+    margin: 15px 15px;
+    font-size: 20px;
+    color: rgb(2, 45, 137);
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 1s;
+    font-size: 2px for 1s color;
+    padding: 5px 10px;
+    background-color: rgb(59, 128, 83);
+}
+
+.activebar a:hover {
+    border: solid white;
+    animation-name: colorswaps;
+    animation-duration: infinite;
+    background-repeat: repeat;
+    animation-iteration-count: 10;
+    font-size: 15px;
+    color: rgb(0, 255, 242);
+    background-color: rgb(18, 20, 104);
+    text-decoration: underline;
+    transition: 1s;
+    margin: 3px;
+    font-size: 30px;
+}
