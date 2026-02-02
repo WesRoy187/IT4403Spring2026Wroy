@@ -9,15 +9,13 @@ body {
     margin: 0;
 
 }
-header {
+.headerCourse {
     background-color: bisque;
-    border: solid black;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     height: auto;
-    padding: 15px;
     max-width: 100%;
     margin: 0;
 }
@@ -35,16 +33,14 @@ header {
     padding: 15px;
 }
 
-.header {
+.headers {
     text-align: center;
     background-color: bisque;
-    border: solid black;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     height: auto;
-    padding: 15px;
     max-width: 100%;
     margin: 0;
 }
@@ -90,4 +86,3 @@ header {
     max-width: 100%;
     margin: 0;
 }
-
