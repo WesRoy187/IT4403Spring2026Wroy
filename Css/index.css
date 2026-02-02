@@ -19,19 +19,18 @@ body {
     background-position: center;
     height: auto;
     max-width: 100%;
-    margin: 0;
+    margin: 75px 25px 75px 25px;
 }
 
 nav {
     text-align: center;
     color: white;
-    background-color: aliceblue;
-    border: solid black;
+    margin: 75px 25px 75px 25px;
 }
 
 header {
     background-color:rgb(161, 161, 161);
-    border: solid black;
+    /*border: solid black;*/
     margin: 75px 25px 75px 25px;
     padding: 15px;
 }
@@ -47,7 +46,7 @@ header {
     background-position: center;
     height: auto;
     max-width: 100%;
-    margin: 0;
+    margin: 75px 25px 75px 25px;
 }
 
 .activebar a {
@@ -91,7 +90,4 @@ header {
     max-width: 100%;
     margin: 0;
 }
-
-
-
 
