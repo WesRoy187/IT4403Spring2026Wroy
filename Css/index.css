@@ -19,3 +19,22 @@ header {
     max-width: 100%;
     margin: 0;
 }
+
+nav {
+    background-color: black;
+    color: white;
+}
+
+header {
+    background-color:rgb(161, 161, 161)
+}
+.header {
+        background-color: bisque;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: auto;
+    max-width: 100%;
+    margin: 0;
+}
