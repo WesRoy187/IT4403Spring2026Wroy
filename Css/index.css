@@ -13,7 +13,7 @@ body {
     background-color: bisque;
     background-size: cover;
     border-style: solid;
-    border-width: 5px;
+    border-width: 1px;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -38,7 +38,7 @@ header {
 .headersreg {
     text-align: center;
     border-style: solid;
-    border-width: 5px;
+    border-width: 1px;
     background-color: bisque;
     background-size: cover;
     background-repeat: no-repeat;
@@ -90,5 +90,6 @@ header {
     max-width: 100%;
     margin: 0;
 }
+
 
 
