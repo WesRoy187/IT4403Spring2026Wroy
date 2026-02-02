@@ -33,7 +33,7 @@ header {
     padding: 15px;
 }
 
-.headers {
+.headersreg {
     text-align: center;
     background-color: bisque;
     background-size: cover;
@@ -86,3 +86,4 @@ header {
     max-width: 100%;
     margin: 0;
 }
+
