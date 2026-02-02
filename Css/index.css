@@ -11,7 +11,7 @@ body {
 }
 header {
     background-color: bisque;
-    border: black;
+    border: solid black;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -30,13 +30,13 @@ nav {
 
 header {
     background-color:rgb(161, 161, 161);
-    border: black;
+    border: solid black;
 }
 
 .header {
     text-align: center;
     background-color: bisque;
-    border: black;
+    border: solid black;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -77,7 +77,7 @@ header {
 .resourceheader {
     text-align: center;
     background-color: rgb(161, 161, 161);
-    border: black;
+    border: solid black;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -86,4 +86,3 @@ header {
     max-width: 100%;
     margin: 0;
 }
-
