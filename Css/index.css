@@ -58,14 +58,14 @@ header {
 }
 
 .activebar a:hover {
-    border: solid white;
+    /*border: solid white;*/
     animation-name: colorswaps;
     animation-duration: infinite;
-    background-repeat: repeat;
+    /*background-repeat: repeat;*/
     animation-iteration-count: 10;
-    font-size: 13px;
+    /*font-size: 13px;*/
     color: rgb(0, 255, 242);
-    background-color: rgb(18, 20, 104);
+    /*background-color: rgb(18, 20, 104);*/
     text-decoration: underline;
     transition: 1s;
     margin: 3px;
@@ -91,3 +91,4 @@ footer {
     color: white;
     padding: 15px;
 }
+
