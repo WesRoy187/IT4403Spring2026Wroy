@@ -21,7 +21,7 @@ header {
 }
 
 nav {
-    background-color: black;
+    text-align: center;
     color: white;
 }
 
@@ -66,3 +66,4 @@ header {
     margin: 3px;
     font-size: 30px;
 }
+
