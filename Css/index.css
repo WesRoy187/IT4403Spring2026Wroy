@@ -86,4 +86,8 @@ header {
     margin: 0;
 }
 
-
+footer {
+    text-align: center;
+    color: white;
+    padding: 15px;
+}
