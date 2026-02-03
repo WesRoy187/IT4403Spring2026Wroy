@@ -50,7 +50,7 @@ header {
     font-size: 12px;
     color: rgb(254, 254, 254);
     text-transform: uppercase;
-    font-weight: bold;
+    /*font-weight: bold;*/
     transition: 1s;
     font-size: 2px for 1s color;
     padding: 5px 10px;
@@ -64,11 +64,12 @@ header {
     /*background-repeat: repeat;*/
     animation-iteration-count: 10;
     /*font-size: 13px;*/
+    font-weight: 500;
     color: rgb(0, 255, 242);
     /*background-color: rgb(18, 20, 104);*/
     text-decoration: underline;
     transition: 1s;
-    margin: 3px;
+    /*margin: 3px;*/
     /*font-size: 20px;*/
 }
 
@@ -91,5 +92,6 @@ footer {
     color: white;
     padding: 15px;
 }
+
 
 
