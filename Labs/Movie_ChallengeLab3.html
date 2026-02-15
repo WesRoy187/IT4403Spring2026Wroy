@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Movie Information</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        padding: 40px;
+    }
+
+    .movie-card {
+        background: white;
+        max-width: 800px;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .header {
+        display: flex;
+        gap: 20px;
+    }
+
+    .poster {
+        width: 150px;
+        border-radius: 8px;
+    }
+
+    h1 {
+        margin-bottom: 5px;
+    }
+
+    .label {
+        font-weight: bold;
+    }
+
+    .section {
+        margin-top: 20px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+    .header.nav {
+        text-align: center;
+        color: white;
+    }
+</style>
+ 
+</head>
+
+<body>
+
+<header>
+
+    <nav>
+        <a href="Index_home_page/index.html">Home</a>
+        <a href="Exercises/Exercises.html">Exercises</a>
+        <a href="Labs/Labs.html">Labs</a>
+    </nav>
+
+
+<div class="movie-card">
+    <div class="header">
+        <img id="poster" class="poster" src="" alt="Movie Poster">
+        <div>
+            <h1 id="title"></h1>
+            <p><span class="label">Year:</span> <span id="year"></span></p>
+            <p><span class="label">MPAA Rating:</span> <span id="mpaa"></span></p>
+            <p><span class="label">Runtime:</span> <span id="runtime"></span> minutes</p>
+            <p><span class="label">Genres:</span> <span id="genres"></span></p>
+        </div>
+    </div>
+
+    <div class="section">
+        <p><span class="label">Director:</span> <span id="director"></span></p>
+        <p><span class="label">Studio:</span> <span id="studio"></span></p>
+    </div>
+
+    <div class="section">
+        <p><span class="label">Critics Score:</span> <span id="critics"></span></p>
+        <p><span class="label">Audience Score:</span> <span id="audience"></span></p>
+    </div>
+
+    <div class="section">
+        <h3>Synopsis</h3>
+        <p id="synopsis"></p>
+    </div>
+
+    <div class="section">
+        <h3>Main Cast</h3>
+        <ul id="cast"></ul>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+
+    $.getJSON("movie.json", function(data) {
+
+        // Basic Info
+        $("#title").text(data.title);
+        $("#year").text(data.year);
+        $("#mpaa").text(data.mpaa_rating);
+        $("#runtime").text(data.runtime);
+        $("#studio").text(data.studio);
+
+        // Genres (array → string)
+        $("#genres").text(data.genres.join(", "));
+
+        // Director (array)
+        $("#director").text(data.abridged_directors[0].name);
+
+        // Ratings
+        $("#critics").text(data.ratings.critics_score + "% (" + data.ratings.critics_rating + ")");
+        $("#audience").text(data.ratings.audience_score + "% (" + data.ratings.audience_rating + ")");
+
+        // Synopsis
+        $("#synopsis").text(data.synopsis);
+
+        // Poster
+        $("#poster").attr("src", data.posters.original);
+
+        // Cast (array loop)
+        $.each(data.abridged_cast, function(index, actor) {
+            $("#cast").append(
+                "<li><strong>" + actor.name + "</strong> as " + actor.characters[0] + "</li>"
+            );
+        });
+
+    });
+
+});
+</script>
+
+</body>
+</html>
