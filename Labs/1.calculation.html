@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Modified Calculator</title>
+
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+    }
+
+    #result {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    .error {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Wes Roy</h1>
+    <p>Calculator Lab asignment 2</p>
+    <nav>
+        <div class="activebar">
+       <a href="Index_home_page/index.html">Home</a>
+       <a href="Exercises/Exercises.html">Exercises</a>
+       <a href="Labs/Labs.html">Labs</a>
+        </div>
+    </nav>
+</header>  
+
+<h2>Modified Calculator Example</h2>
+<p>This calculator performs basic arithmetic operations.</p>
+
+<label>Enter first number:</label>
+<input type="text" id="num1"><br><br>
+
+<label>Enter second number:</label>
+<input type="text" id="num2"><br><br>
+
+<label>Select operation:</label>
+<select id="operation">
+    <option value="+">Addition (+)</option>
+    <option value="-">Subtraction (-)</option>
+    <option value="*">Multiplication (*)</option>
+    <option value="/">Division (/)</option>
+</select><br><br>
+
+<label>Enter result color (e.g., red, blue, green):</label>
+<input type="text" id="colorInput"><br><br>
+
+<button id="calculateBtn">Calculate</button>
+
+<div id="result"></div>
+
+<script>
+$(document).ready(function() {
+
+    $("#calculateBtn").click(function() {
+
+        let x = parseFloat($("#num1").val());
+        let y = parseFloat($("#num2").val());
+        let operation = $("#operation").val();
+        let color = $("#colorInput").val();
+
+        // Validate numbers
+        if (isNaN(x) || isNaN(y)) {
+            $("#result")
+                .removeClass()
+                .addClass("error")
+                .text("Error: Please enter valid numeric values.");
+            return;
+        }
+
+        let calculationResult;
+
+        switch (operation) {
+            case "+":
+                calculationResult = x + y;
+                break;
+            case "-":
+                calculationResult = x - y;
+                break;
+            case "*":
+                calculationResult = x * y;
+                break;
+            case "/":
+                if (y === 0) {
+                    $("#result")
+                        .removeClass()
+                        .addClass("error")
+                        .text("Error: Division by zero is not allowed.");
+                    return;
+                }
+                calculationResult = x / y;
+                break;
+        }
+
+        // Display result dynamically with user color
+        $("#result")
+            .removeClass()
+            .css("color", color)
+            .text(`Result: ${x} ${operation} ${y} = ${calculationResult}`);
+
+    });
+
+});
+</script>
+
+</body>
+</html>
