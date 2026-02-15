@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Accessible jQuery Image Gallery</title>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 30px;
+    }
+
+    #gallery {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    img {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    #caption {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    #counter {
+        margin-top: 5px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    button {
+        margin: 15px 5px;
+        padding: 8px 15px;
+        cursor: pointer;
+    }
+
+    #attribution {
+        margin-top: 30px;
+        font-size: 12px;
+        text-align: left;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    nav {
+        text-align: center;
+        color: white;
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>Wes Roy</h1>
+    <p>Picutre Picture Browser Application Lab 2</p>
+    <nav>
+        <div class="activebar">
+       <a href="Index_home_page/index.html">Home</a>
+       <a href="Exercises/Exercises.html">Exercises</a>
+       <a href="Labs/Labs.html">Labs</a>
+        </div>
+    </nav>
+</header>  
+<h2>Creative Commons Image Gallery</h2>
+
+<div id="gallery">
+
+    <img id="galleryImage" src="" alt="" aria-live="polite">
+   
+    <div id="caption"></div>
+    <div id="counter"></div>
+
+    <button id="prevBtn">Previous</button>
+    <button id="nextBtn">Next</button>
+    <button id="toggleSlide">Start Slideshow</button>
+
+</div>
+
+<div id="attribution">
+    <h4>Image Attributions (Creative Commons Licensed)</h4>
+    <ul>
+        <li>Mountain landscape – Photo by eberhard grossgasteiger on Unsplash (CC0)</li>
+        <li>Forest path – Photo by Johannes Plenio on Unsplash (CC0)</li>
+        <li>Ocean sunset – Photo by Sean O. on Unsplash (CC0)</li>
+        <li>Desert dunes – Photo by David Clode on Unsplash (CC0)</li>
+        <li>Snowy peaks – Photo by Simon Berger on Unsplash (CC0)</li>
+    </ul>
+</div>
+
+<script>
+$(document).ready(function () {
+
+    // Image array with URL, alt text, and caption
+    const images = [
+        {
+            src: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+            alt: "Mountain landscape with dramatic cloudy sky",
+            caption: "Mountain Landscape"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+            alt: "Sunlight shining through trees in a forest path",
+            caption: "Forest Path"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+            alt: "Ocean sunset with waves and orange sky",
+            caption: "Ocean Sunset"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1509316785289-025f5b846b35",
+            alt: "Golden desert sand dunes under blue sky",
+            caption: "Desert Dunes"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1482192596544-9eb780fc7f66",
+            alt: "Snow-covered mountain peaks during sunrise",
+            caption: "Snowy Peaks"
+        }
+    ];
+
+    let currentIndex = 0;
+    let slideInterval = null;
+
+    function showImage(index) {
+        $("#galleryImage").fadeOut(300, function () {
+            $(this)
+                .attr("src", images[index].src)
+                .attr("alt", images[index].alt)
+                .fadeIn(300);
+        });
+
+        $("#caption").text(images[index].caption);
+        $("#counter").text("Image " + (index + 1) + " of " + images.length);
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    }
+
+    // Error handling
+    $("#galleryImage").on("error", function () {
+        $(this).attr("alt", "Image failed to load");
+        $("#caption").text("Image could not be loaded.");
+    });
+
+    // Button events
+    $("#nextBtn").click(nextImage);
+    $("#prevBtn").click(prevImage);
+
+    // Slideshow toggle
+    $("#toggleSlide").click(function () {
+        if (slideInterval) {
+            clearInterval(slideInterval);
+            slideInterval = null;
+            $(this).text("Start Slideshow");
+        } else {
+            slideInterval = setInterval(nextImage, 3000);
+            $(this).text("Stop Slideshow");
+        }
+    });
+
+    // Keyboard navigation
+    $(document).keydown(function (e) {
+        if (e.key === "ArrowRight") {
+            nextImage();
+        }
+        if (e.key === "ArrowLeft") {
+            prevImage();
+        }
+    });
+
+    // Initialize first image
+    showImage(currentIndex);
+
+});
+</script>
+
+</body>
+</html>
