@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Google Books Search Results</title>
+
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1a73e8;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.book-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.book-image img {
+    width: 150px;
+    border-radius: 5px;
+}
+
+.book-details {
+    flex: 1;
+}
+
+.book-details h2 {
+    margin: 0 0 5px 0;
+    color: #1a73e8;
+}
+
+.book-details h4 {
+    margin: 0 0 10px 0;
+    color: #555;
+    font-weight: normal;
+}
+
+.book-meta {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.book-description {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.links a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #1a73e8;
+    font-weight: bold;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+.price {
+    font-weight: bold;
+    color: green;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Google Books – Search Results</h1>
+</header>
+
+<nav>
+    <a href="Milestones.html">Milstones main page</a>
+</nav>
+<div class="container" id="bookList"></div>
+
+<script>
+$(document).ready(function() {
+
+    // Load external JSON file
+    $.getJSON("google-books-search.json", function(data) {
+
+        // Loop through all books
+        $.each(data.items, function(index, book) {
+
+            let volume = book.volumeInfo;
+            let sale = book.saleInfo;
+            let access = book.accessInfo;
+
+            let authors = volume.authors ? volume.authors.join(", ") : "N/A";
+            let categories = volume.categories ? volume.categories.join(", ") : "N/A";
+            let subtitle = volume.subtitle ? volume.subtitle : "";
+            let description = volume.description ? volume.description.substring(0, 300) + "..." : "No description available.";
+            let thumbnail = volume.imageLinks ? volume.imageLinks.thumbnail : "";
+            let price = sale.listPrice ? sale.listPrice.amount + " " + sale.listPrice.currencyCode : sale.saleability;
+            let buyLink = sale.buyLink ? sale.buyLink : "#";
+
+            let bookHTML = `
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="${thumbnail}" alt="Book Cover">
+                    </div>
+                    <div class="book-details">
+                        <h2>${volume.title}</h2>
+                        <h4>${subtitle}</h4>
+
+                        <div class="book-meta">
+                            <strong>Authors:</strong> ${authors}<br>
+                            <strong>Publisher:</strong> ${volume.publisher || "N/A"}<br>
+                            <strong>Published:</strong> ${volume.publishedDate || "N/A"}<br>
+                            <strong>Pages:</strong> ${volume.pageCount || "N/A"}<br>
+                            <strong>Categories:</strong> ${categories}<br>
+                            <strong>Language:</strong> ${volume.language}<br>
+                            <strong>Maturity Rating:</strong> ${volume.maturityRating}
+                        </div>
+
+                        <div class="book-description">
+                            ${description}
+                        </div>
+
+                        <div class="price">
+                            Price: ${price}
+                        </div>
+
+                        <div class="links">
+                            <a href="${volume.previewLink}" target="_blank">Preview</a>
+                            <a href="${volume.infoLink}" target="_blank">More Info</a>
+                            ${sale.buyLink ? `<a href="${buyLink}" target="_blank">Buy</a>` : ""}
+                            <a href="${access.webReaderLink}" target="_blank">Read Sample</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            $("#bookList").append(bookHTML);
+        });
+
+    });
+
+});
+</script>
+
+</body>
+</html>
