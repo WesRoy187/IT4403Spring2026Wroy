@@ -84,6 +84,34 @@ header {
     font-weight: bold;
     color: green;
 }
+
+.activebar a {
+    /* border: solid white;*/
+    margin: 15px 15px;
+    font-size: 12px;
+    color: rgb(254, 254, 254);
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 1s;
+    font-size: 2px for 1s color;
+    padding: 5px 10px;
+    /*background-color: rgb(59, 128, 83);*/
+}
+
+.activebar a:hover {
+    border: solid white;
+    animation-name: colorswaps;
+    animation-duration: infinite;
+    background-repeat: repeat;
+    animation-iteration-count: 10;
+    font-size: 13px;
+    color: rgb(0, 255, 242);
+    background-color: rgb(18, 20, 104);
+    text-decoration: underline;
+    transition: 1s;
+    margin: 3px;
+    font-size: 20px;
+}
 </style>
 </head>
 
@@ -94,8 +122,14 @@ header {
 </header>
 
 <nav>
-    <a href="Milestones.html">Milstones main page</a>
+    <div class="activebar">
+    <a href="Index_home_page/index.html">Home</a>
+    <a href="Exercises/Exercises.html">Exercises</a>
+    <a href="Labs/Labs.html">Labs</a>
+    <a href="Milestone1.html">Individual Project Work</a>
+    </div>
 </nav>
+
 <div class="container" id="bookList"></div>
 
 <script>
