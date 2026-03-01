@@ -1,24 +1,235 @@
-<!Doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title> IT4403 website by Wes Roy </title>
-    <link rel="stylesheet" href="Css/index.css">
+    <title>Milestone 1 Single Book Details</title>
+
+    <!-- jQuery (Allowed Library) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 85%;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-bottom: 5px;
+        }
+
+        .book-header {
+            display: flex;
+            gap: 30px;
+        }
+
+        .book-header img {
+            max-width: 250px;
+            border-radius: 5px;
+        }
+
+        .section {
+            margin-top: 25px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .rating {
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+            color: #777;
+        }
+    .activebar a {
+        /* border: solid white;*/
+        margin: 15px 15px;
+        font-size: 12px;
+        color: rgb(254, 254, 254);
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: 1s;
+        font-size: 2px for 1s color;
+        padding: 5px 10px;
+        /*background-color: rgb(59, 128, 83);*/
+    }
+
+    .activebar a:hover {
+        border: solid white;
+        animation-name: colorswaps;
+        animation-duration: infinite;
+        background-repeat: repeat;
+        animation-iteration-count: 10;
+        font-size: 13px;
+        color: rgb(0, 255, 242);
+        background-color: rgb(18, 20, 104);
+        text-decoration: underline;
+        transition: 1s;
+        margin: 3px;
+        font-size: 20px;
+}
+    </style>
 </head>
 
 <body>
-<header>
-    <h1>Wes Roy</h1>
-    <p>Kennesaw State University - CCSE IT Student</p>
-    <nav>
-        <div class="activebar">
-       <a href="Index_home_page/index.html">Home</a>
-       <a href="Exercises/Exercises.html">Exercises</a>
-       <a href="Labs/Labs.html">Labs</a>
-       <a href="Milestone1.html">Individual Project Work</a>
+<nav>
+    <div class="activebar">
+    <a href="Index_home_page/index.html">Home</a>
+    <a href="Exercises/Exercises.html">Exercises</a>
+    <a href="Labs/Labs.html">Labs</a>
+    <a href="Milestone1.html">Individual Project Work</a>
+    </div>
+</nav>
+<div class="container">
+
+    <div class="book-header">
+        <img id="bookImage" src="" alt="Book Cover">
+        <div>
+            <h1 id="title"></h1>
+            <h2 id="subtitle"></h2>
+            <p><span class="label">Author:</span> <span id="author"></span></p>
+            <p><span class="label">Publisher:</span> <span id="publisher"></span></p>
+            <p><span class="label">Published:</span> <span id="publishedDate"></span></p>
+            <p><span class="label">Page Count:</span> <span id="pageCount"></span></p>
+            <p><span class="label">Print Type:</span> <span id="printType"></span></p>
+            <p class="rating" id="rating"></p>
         </div>
-    </nav>
-</header>  
+    </div>
+
+    <div class="section">
+        <h2>Description</h2>
+        <div id="description"></div>
+    </div>
+
+    <div class="section">
+        <h2>Categories</h2>
+        <ul id="categories"></ul>
+    </div>
+
+    <div class="section">
+        <h2>Industry Identifiers</h2>
+        <p><span class="label">ISBN-10:</span> <span id="isbn10"></span></p>
+        <p><span class="label">ISBN-13:</span> <span id="isbn13"></span></p>
+    </div>
+
+    <div class="section">
+        <h2>Dimensions</h2>
+        <p id="dimensions"></p>
+    </div>
+
+    <div class="section">
+        <h2>Access & Availability</h2>
+        <p><span class="label">Country:</span> <span id="country"></span></p>
+        <p><span class="label">Saleability:</span> <span id="saleability"></span></p>
+        <p><span class="label">Viewability:</span> <span id="viewability"></span></p>
+        <p><span class="label">Epub Available:</span> <span id="epub"></span></p>
+        <p><span class="label">PDF Available:</span> <span id="pdf"></span></p>
+    </div>
+
+    <div class="section">
+        <h2>Links</h2>
+        <p><a id="previewLink" target="_blank">Preview Book</a></p>
+        <p><a id="infoLink" target="_blank">Google Play Info</a></p>
+        <p><a id="webReaderLink" target="_blank">Read Sample</a></p>
+        <p><a id="apiLink" target="_blank">View Raw API JSON</a></p>
+    </div>
+
+    <div class="footer">
+        Data Source: google-books-book.json
+    </div>
+
+</div>
+
+<script>
+$(document).ready(function(){
+
+    // Load JSON from external file
+    $.getJSON("google-books-book.json", function(book){
+
+        $("#title").text(book.volumeInfo.title);
+        $("#subtitle").text(book.volumeInfo.subtitle);
+        $("#author").text(book.volumeInfo.authors.join(", "));
+        $("#publisher").text(book.volumeInfo.publisher);
+        $("#publishedDate").text(book.volumeInfo.publishedDate);
+        $("#pageCount").text(book.volumeInfo.pageCount);
+        $("#printType").text(book.volumeInfo.printType);
+
+        if(book.volumeInfo.averageRating){
+            $("#rating").text(
+                "Rating: " + book.volumeInfo.averageRating +
+                " (" + book.volumeInfo.ratingsCount + " reviews)"
+            );
+        }
+
+        $("#description").html(book.volumeInfo.description);
+
+        $("#isbn10").text(book.volumeInfo.industryIdentifiers[0].identifier);
+        $("#isbn13").text(book.volumeInfo.industryIdentifiers[1].identifier);
+
+        $("#dimensions").text(
+            "Height: " + book.volumeInfo.dimensions.height +
+            ", Width: " + book.volumeInfo.dimensions.width +
+            ", Thickness: " + book.volumeInfo.dimensions.thickness
+        );
+
+        $("#country").text(book.saleInfo.country);
+        $("#saleability").text(book.saleInfo.saleability);
+        $("#viewability").text(book.accessInfo.viewability);
+        $("#epub").text(book.accessInfo.epub.isAvailable ? "Yes" : "No");
+        $("#pdf").text(book.accessInfo.pdf.isAvailable ? "Yes" : "No");
+
+        $("#previewLink").attr("href", book.volumeInfo.previewLink);
+        $("#infoLink").attr("href", book.volumeInfo.infoLink);
+        $("#webReaderLink").attr("href", book.accessInfo.webReaderLink);
+        $("#apiLink").attr("href", book.selfLink);
+
+        $("#bookImage").attr("src", book.volumeInfo.imageLinks.large);
+
+        // Categories (allowed small loop for array display)
+        book.volumeInfo.categories.forEach(function(cat){
+            $("#categories").append("<li>" + cat + "</li>");
+        });
+
+    });
+
+});
+</script>
+
 </body>
 </html>
