@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <title>Google Books Multiple Results</title>
 
-<!-- jQuery CDN -->
+<!-- jQuery src link -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<!-- Css styles for the webpage -->
 <style>
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -58,7 +58,7 @@ header {
     font-weight: normal;
 }
 
-.book-meta {
+.book-info {
     font-size: 14px;
     margin-bottom: 10px;
     color: #444;
@@ -80,7 +80,7 @@ header {
     text-decoration: underline;
 }
 
-.price {
+.prices {
     font-weight: bold;
     color: green;
 }
@@ -125,9 +125,9 @@ footer {
 <body>
 
 <header>
-    <h1>Google Books – Multiple Results</h1>
+    <h1>Multiple Google Book Results</h1>
 </header>
-
+<!-- Links back to the individual project home page selection-->
 <nav>
     <div class="activebar">
     <a href="Milestone1.html">Project Homepage</a>
@@ -139,10 +139,10 @@ footer {
 <script>
 $(document).ready(function() {
 
-    // Load external JSON file
+    // Loading external JSON file for the website
     $.getJSON("google-books-search.json", function(data) {
 
-        // Loop through all books
+        // Looping through all the books data in JSON
         $.each(data.items, function(index, book) {
 
             let volume = book.volumeInfo;
@@ -156,7 +156,7 @@ $(document).ready(function() {
             let thumbnail = volume.imageLinks ? volume.imageLinks.thumbnail : "";
             let price = sale.listPrice ? sale.listPrice.amount + " " + sale.listPrice.currencyCode : sale.saleability;
             let buyLink = sale.buyLink ? sale.buyLink : "#";
-
+            // Displays book info into the website and uses div class id's for css styles
             let bookHTML = `
                 <div class="book-card">
                     <div class="book-image">
@@ -166,7 +166,7 @@ $(document).ready(function() {
                         <h2>${volume.title}</h2>
                         <h4>${subtitle}</h4>
 
-                        <div class="book-meta">
+                        <div class="book-info">
                             <strong>Authors:</strong> ${authors}<br>
                             <strong>Publisher:</strong> ${volume.publisher || "N/A"}<br>
                             <strong>Published:</strong> ${volume.publishedDate || "N/A"}<br>
@@ -180,7 +180,7 @@ $(document).ready(function() {
                             ${description}
                         </div>
 
-                        <div class="price">
+                        <div class="prices">
                             Price: ${price}
                         </div>
 
@@ -204,6 +204,14 @@ $(document).ready(function() {
     <footer>Data Source: google-books-search.json</footer>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
 
