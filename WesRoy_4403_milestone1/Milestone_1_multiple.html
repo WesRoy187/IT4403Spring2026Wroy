@@ -143,6 +143,7 @@ $(document).ready(function() {
     $.getJSON("google-books-search.json", function(data) {
 
         // Looping through all the books' data in JSON and using let to make sure each iteration has its own variable while in the loop
+        // Let allows for the change of each variable's information for the different books inside the Json file 
         $.each(data.items, function(index, book) {
 
             let volume = book.volumeInfo;
@@ -204,6 +205,7 @@ $(document).ready(function() {
     <footer>Data Source: google-books-search.json</footer>
 </body>
 </html>
+
 
 
 
