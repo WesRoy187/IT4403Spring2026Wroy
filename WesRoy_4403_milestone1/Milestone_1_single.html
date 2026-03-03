@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Milestone 1 Single Book Details</title>
 
-    <!-- jQuery (Allowed Library) -->
+    <!-- jQuery src link-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <!-- Css styles-->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -49,7 +49,7 @@
             border-radius: 5px;
         }
 
-        .section {
+        .sections {
             margin-top: 25px;
         }
 
@@ -113,12 +113,14 @@
 </head>
 
 <body>
-    <header>Google Books - Single Book Details</header>
+    <header>Google Single Book Details</header>
+<!-- Nav bar back to the individual project home page-->
 <nav>
     <div class="activebar">
     <a href="Milestone1.html">Project Homepage</a>
     </div>
 </nav>
+<!-- Layout that will be displaying the book info on the website-->
 <div class="container">
 
     <div class="book-header">
@@ -135,28 +137,28 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="sections">
         <h2>Description</h2>
         <div id="description"></div>
     </div>
 
-    <div class="section">
+    <div class="sections">
         <h2>Categories</h2>
         <ul id="categories"></ul>
     </div>
 
-    <div class="section">
+    <div class="sections">
         <h2>Industry Identifiers</h2>
         <p><span class="label">ISBN-10:</span> <span id="isbn10"></span></p>
         <p><span class="label">ISBN-13:</span> <span id="isbn13"></span></p>
     </div>
 
-    <div class="section">
+    <div class="sections">
         <h2>Dimensions</h2>
         <p id="dimensions"></p>
     </div>
 
-    <div class="section">
+    <div class="sections">
         <h2>Access & Availability</h2>
         <p><span class="label">Country:</span> <span id="country"></span></p>
         <p><span class="label">Saleability:</span> <span id="saleability"></span></p>
@@ -165,7 +167,7 @@
         <p><span class="label">PDF Available:</span> <span id="pdf"></span></p>
     </div>
 
-    <div class="section">
+    <div class="sections">
         <h2>Links</h2>
         <p><a id="previewLink" target="_blank">Preview Book</a></p>
         <p><a id="infoLink" target="_blank">Google Play Info</a></p>
@@ -182,9 +184,9 @@
 <script>
 $(document).ready(function(){
 
-    // Load JSON from external file
+    // Using get JSON for external file and placing the data into the html
     $.getJSON("google-books-book.json", function(book){
-
+        //Sections for each piece of data
         $("#title").text(book.volumeInfo.title);
         $("#subtitle").text(book.volumeInfo.subtitle);
         $("#author").text(book.volumeInfo.authors.join(", "));
@@ -199,7 +201,7 @@ $(document).ready(function(){
                 " (" + book.volumeInfo.ratingsCount + " reviews)"
             );
         }
-
+        
         $("#description").html(book.volumeInfo.description);
 
         $("#isbn10").text(book.volumeInfo.industryIdentifiers[0].identifier);
@@ -224,7 +226,7 @@ $(document).ready(function(){
 
         $("#bookImage").attr("src", book.volumeInfo.imageLinks.large);
 
-        // Categories (allowed small loop for array display)
+        // Categories
         book.volumeInfo.categories.forEach(function(cat){
             $("#categories").append("<li>" + cat + "</li>");
         });
@@ -236,6 +238,12 @@ $(document).ready(function(){
 
 </body>
 </html>
+
+
+
+
+
+
 
 
 
